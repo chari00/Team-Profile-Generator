@@ -1,0 +1,28 @@
+body {
+  color: brown;
+  background-color: blue;
+}
+
+.container-fluid {
+  background-color: black;
+}
+.team-heading {
+  background-color: rgb(40, 17, 17);
+}
+.team-area {
+  justify-content: space-evenly !important;
+  padding: 10px;
+  margin: 10px;
+
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+h1 {
+  color: aliceblue;
+  font-size: 3.5rem;
+  font-weight: bolder;
+  font-style: oblique;
+  font: optional;
+}
+.card {
+  background-color: rgb(240, 248, 248);
+}
