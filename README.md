@@ -49,6 +49,10 @@ This project is covered by **MIT**.
 
 In the command line type `node index.js` to see if the application is working without any error and `npm run test` to run the unit test.
 
+#### Below is the image of the App after running the test.
+
+![test-view](images/test-view.png)
+
 ## Questions
 
 For questions and comments please contact the following details:
