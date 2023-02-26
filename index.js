@@ -10,109 +10,14 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 let team = [];
+let answers = "";
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 //create array of prompt question for each object {manager}, {engineer}, and {intern}
 //add validation to ensure that user input is in the proper format.
-startProgram();
 
-async function startProgram() {
-  const teamManagerPrompt = async () =>
-    await inquirer
-      .prompt([
-        {
-          type: "input",
-          name: "name",
-          message: `What is the employee's name?`,
-          validate: (nameInput) => {
-            if (nameInput) {
-              return true;
-            } else {
-              console.log("Please enter a valid name.");
-              return false;
-            }
-          },
-        },
-        {
-          type: "input",
-          name: "employeeId",
-          message: `What is the employee's ID number?`,
-          validate: (employeeId) => {
-            if (employeeId) {
-              return true;
-            } else {
-              console.log("Employee ID is required.");
-              return false;
-            }
-          },
-        },
-        {
-          type: "input",
-          name: "email",
-          message: `What is the employee's E-mail address?`,
-          validate: (email) => {
-            console.log("Please enter a valid email address.");
-            return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(
-              email
-            );
-          },
-        },
-        {
-          type: "input",
-          name: "officeNumber",
-          message: `What is the your office number?`,
-          validate: (officeNumber) => {
-            if (officeNumber) {
-              return true;
-            } else {
-              console.log("Please enter employee office number.");
-              return false;
-            }
-          },
-        },
-      ])
-      .then((answers) => {
-        console.log(JSON.stringify(answers));
-        team.push(
-          new Manager(
-            answers.name,
-            answers.employeeId,
-            answers.email,
-            answers.officeNumber
-          )
-        );
-      });
-  teamManagerPrompt();
-  // rolePromptMenu();
-  //create prompt menu with options: add engineer, add intern, finish building the team.
-  const rolePromptMenu = async () =>
-    await inquirer
-      .prompt({
-        type: "list",
-        name: "role",
-        message: "Add role to build the team profile. ",
-        choices: [
-          "Add an Engineer",
-          "Add an Intern",
-          "Finish building the team",
-        ],
-      })
-      .then((choices) => {
-        console.log(JSON.stringify(choices.role));
-        //if the user selected Engineer
-        if (choices.role === "Add an Engineer") {
-          return engineerPrompt();
-        }
-        //if the user selected Intern
-        else if (choices.role === "Add an Intern") {
-          return internPrompt();
-        } else {
-          // console.log("Finish building the team");
-          rolePromptMenu();
-        }
-      });
-
-  const engineerPrompt = inquirer
+const teamManagerPrompt = async () =>
+  await inquirer
     .prompt([
       {
         type: "input",
@@ -122,7 +27,7 @@ async function startProgram() {
           if (nameInput) {
             return true;
           } else {
-            console.log("Please enter a valid name.");
+            console.log("\nPlease enter a valid name.");
             return false;
           }
         },
@@ -132,11 +37,11 @@ async function startProgram() {
         name: "employeeId",
         message: `What is the employee's ID number?`,
         validate: (employeeId) => {
-          if (employeeId) {
-            return true;
-          } else {
-            console.log("Employee ID is required.");
+          if (isNaN(employeeId)) {
+            console.log("\nEmployee ID is required.");
             return false;
+          } else {
+            return true;
           }
         },
       },
@@ -145,10 +50,115 @@ async function startProgram() {
         name: "email",
         message: `What is the employee's E-mail address?`,
         validate: (email) => {
-          console.log("Please enter a valid email address.");
-          return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(
-            email
-          );
+          if (
+            /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(
+              email
+            )
+          ) {
+            return true;
+          } else {
+            email = "";
+            console.log("\nPlease enter a valid email address.");
+            return false;
+          }
+        },
+      },
+      {
+        type: "input",
+        name: "officeNumber",
+        message: `What is your office number?`,
+        validate: (officeNumber) => {
+          if (isNaN(officeNumber)) {
+            console.log("\nPlease enter employee office number.");
+            return false;
+          } else {
+            return true;
+          }
+        },
+      },
+    ])
+    .then((answers) => {
+      console.log(JSON.stringify(answers));
+      team.push(
+        new Manager(
+          answers.name,
+          answers.employeeId,
+          answers.email,
+          answers.officeNumber
+        )
+      );
+      rolePromptMenu();
+    });
+
+//create prompt menu with options: add engineer, add intern, finish building the team.
+const rolePromptMenu = async () =>
+  await inquirer
+    .prompt({
+      type: "list",
+      name: "role",
+      message: "Add role to build the team profile. ",
+      choices: ["Add an Engineer", "Add an Intern", "Finish building the team"],
+    })
+    .then((choices) => {
+      console.log(JSON.stringify(choices.role));
+      //if the user selected Engineer
+      if (choices.role === "Add an Engineer") {
+        engineerPrompt();
+      }
+      //if the user selected Intern
+      else if (choices.role === "Add an Intern") {
+        internPrompt();
+      } else {
+        //finished adding employees, render page.
+        endProgram();
+      }
+    });
+
+const engineerPrompt = async () =>
+  await inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: `What is the employee's name?`,
+        validate: (nameInput) => {
+          if (nameInput) {
+            return true;
+          } else {
+            console.log("\nPlease enter a valid name.");
+            return false;
+          }
+        },
+      },
+      {
+        type: "input",
+        name: "employeeId",
+        message: `What is the employee's ID number?`,
+        validate: (employeeId) => {
+          if (isNaN(employeeId)) {
+            console.log("\nEmployee ID is required.");
+            return false;
+          } else {
+            return true;
+          }
+        },
+      },
+      {
+        type: "input",
+        name: "email",
+        message: `What is the employee's E-mail address?`,
+        validate: (email) => {
+          if (
+            /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(
+              email
+            )
+          ) {
+            return true;
+          } else {
+            email = "";
+            console.log("\nPlease enter a valid email address.");
+            return false;
+          }
         },
       },
       {
@@ -175,9 +185,11 @@ async function startProgram() {
           answers.github
         )
       );
+      rolePromptMenu();
     });
 
-  const internPrompt = inquirer
+const internPrompt = async () =>
+  await inquirer
     .prompt([
       {
         type: "input",
@@ -187,7 +199,7 @@ async function startProgram() {
           if (nameInput) {
             return true;
           } else {
-            console.log("Please enter a valid name.");
+            console.log("\nPlease enter a valid name.");
             return false;
           }
         },
@@ -195,31 +207,38 @@ async function startProgram() {
       {
         type: "input",
         name: "employeeId",
-        message: `What is the your ID number?`,
+        message: `What is the employee's ID number?`,
         validate: (employeeId) => {
-          if (employeeId) {
-            return true;
-          } else {
-            console.log("ID is required.");
+          if (isNaN(employeeId)) {
+            console.log("\nEmployee ID is required.");
             return false;
+          } else {
+            return true;
           }
         },
       },
       {
         type: "input",
         name: "email",
-        message: `What is the Intern E-mail address?`,
+        message: `What is the employee's E-mail address?`,
         validate: (email) => {
-          console.log("Please enter a valid email address.");
-          return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(
-            email
-          );
+          if (
+            /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(
+              email
+            )
+          ) {
+            return true;
+          } else {
+            email = "";
+            console.log("\nPlease enter a valid email address.");
+            return false;
+          }
         },
       },
       {
         type: "input",
         name: "schoolName",
-        message: `What is the Intern school name?`,
+        message: `What is your school name?`,
         validate: (schoolName) => {
           if (schoolName) {
             return true;
@@ -240,29 +259,14 @@ async function startProgram() {
           answers.schoolName
         )
       );
+      rolePromptMenu();
     });
-  // rolePromptMenu();
 
-  //push the employee roles to team profile in htm file
-  // team.push(new Manager("Chari", 56, "chari@gmail.com", 543));
-  // team.push(
-  //   new Engineer(
-  //     answers.name,
-  //     answers.employeeId,
-  //     answers.email,
-  //     answers.github
-  //   )
-  // );
-  // team.push(
-  //   new Intern(
-  //     answers.name,
-  //     answers.employeeId,
-  //     answers.email,
-  //     answers.schoolName
-  //   )
-  // );
-
+async function endProgram() {
   let htmlDoc = render(team);
   //function to dynamically create html file.
   await fs.writeFileSync(outputPath, htmlDoc);
 }
+teamManagerPrompt();
+// rolePromptMenu();
+// startProgram();
