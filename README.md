@@ -8,7 +8,7 @@
 - [Installation](#Installation)
 - [Visual](#Visual)
 - [Usage](#Usage)
-- [ResourceLink](#ResourceLink)
+- [Resource](#Resource)
 - [License](#License)
 - [Test](#Test)
 - [Questions](#Questions)
@@ -27,7 +27,7 @@ This is an App for generating team profile with node.js, inquirer.js and jest pa
 
 ## Visual
 
-#### Below are the image of the Team Profile App when the user finished input the team information.
+#### Below is the image of the Team Profile App when the user finished input the team information.
 
 ![Profile-view](images/profile-view2.png)
 
@@ -35,11 +35,15 @@ This is an App for generating team profile with node.js, inquirer.js and jest pa
 
 In the command line type node index.js, press ENTER to run the team profile generator questionaire.
 
-## Resource Link
+## Resource
 
 - https://www.npmjs.com/package/inquirer
 
 - https://www.npmjs.com/package/jest
+
+- https://nodejs.org/en/docs/
+
+- https://stackoverflow.com/questions/52456065/how-to-format-and-validate-email-node-js
 
 ## License
 
