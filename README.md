@@ -8,7 +8,7 @@
 - [Installation](#Installation)
 - [Visual](#Visual)
 - [Usage](#Usage)
-- [Resource-Link](#Resource Link)
+- [ResourceLink](#ResourceLink)
 - [License](#License)
 - [Test](#Test)
 - [Questions](#Questions)
@@ -21,15 +21,15 @@ This is an App for generating team profile with node.js, inquirer.js and jest pa
 
 - The software package needed to install are [package.json](https://docs.npmjs.com/cli/v9/configuring-npm/package-json), [Inquirer package](https://www.npmjs.com/package/inquirer) and [Jest package](https://www.npmjs.com/package/jest).
 - In the command line type `npm init -y` to install `package.json`, `npm i inquirer` to install inquirer.js and `npm i` to install jest package.
-- Open the package.json file in the VScode and replace the value of the `"test":` to `"test": "jest --verbose"` an image provided below;
+- Open the package.json file in the VScode and replace the value of the `"test":` to `"test": "jest --verbose"` an image is provided below;
 
-<img src="../images/installation-test.png">
+![jest --verbose](images/installation-test.png)
 
 ## Visual
 
-#### Below is the image of the Team Profile App when the user finished input the team information.
+#### Below are the image of the Team Profile App when the user finished input the team information.
 
-<img src="../images/.png">
+![Profile-view](images/profile-view2.png)
 
 ## Usage
 

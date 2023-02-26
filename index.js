@@ -57,7 +57,6 @@ const teamManagerPrompt = async () =>
           ) {
             return true;
           } else {
-            email = "";
             console.log("\nPlease enter a valid email address.");
             return false;
           }
