@@ -1,18 +1,20 @@
 body {
   color: brown;
-  background-color: blue;
+  background-color: rgb(72, 72, 177);
 }
 
 .container-fluid {
   background-color: black;
 }
 .team-heading {
-  background-color: rgb(40, 17, 17);
+  background-color: rgb(79, 6, 6);
 }
+
 .team-area {
   justify-content: space-evenly !important;
   padding: 10px;
   margin: 10px;
+  width: 100%;
 
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }

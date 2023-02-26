@@ -10,7 +10,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 let team = [];
-let answers = "";
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 //create array of prompt question for each object {manager}, {engineer}, and {intern}
@@ -267,5 +266,3 @@ async function endProgram() {
   await fs.writeFileSync(outputPath, htmlDoc);
 }
 teamManagerPrompt();
-// rolePromptMenu();
-// startProgram();
