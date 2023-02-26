@@ -39,8 +39,11 @@ const teamManagerPrompt = async () =>
           if (isNaN(employeeId)) {
             console.log("\nEmployee ID is required.");
             return false;
-          } else {
+          } else if (employeeId) {
             return true;
+          } else {
+            console.log("\nEmployee ID is required.");
+            return false;
           }
         },
       },
@@ -69,8 +72,11 @@ const teamManagerPrompt = async () =>
           if (isNaN(officeNumber)) {
             console.log("\nPlease enter employee office number.");
             return false;
-          } else {
+          } else if (officeNumber) {
             return true;
+          } else {
+            console.log("\nPlease enter employee office number.");
+            return false;
           }
         },
       },
@@ -136,8 +142,11 @@ const engineerPrompt = async () =>
           if (isNaN(employeeId)) {
             console.log("\nEmployee ID is required.");
             return false;
-          } else {
+          } else if (employeeId) {
             return true;
+          } else {
+            console.log("\nEmployee ID is required.");
+            return false;
           }
         },
       },
@@ -210,8 +219,11 @@ const internPrompt = async () =>
           if (isNaN(employeeId)) {
             console.log("\nEmployee ID is required.");
             return false;
-          } else {
+          } else if (employeeId) {
             return true;
+          } else {
+            console.log("\nEmployee ID is required.");
+            return false;
           }
         },
       },

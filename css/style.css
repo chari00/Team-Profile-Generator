@@ -28,3 +28,6 @@ h1 {
 .card {
   background-color: rgb(240, 248, 248);
 }
+.card-header {
+  background-color: antiquewhite;
+}
