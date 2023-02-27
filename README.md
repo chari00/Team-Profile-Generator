@@ -45,6 +45,10 @@ In the command line type _`node index.js`_ and press ENTER to run the team profi
 
 - https://stackoverflow.com/questions/52456065/how-to-format-and-validate-email-node-js
 
+#### Source code location
+
+- https://github.com/chari00/Team-Profile-Generator
+
 ## License
 
 This project is covered by **_MIT_**.
