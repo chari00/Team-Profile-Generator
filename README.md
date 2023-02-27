@@ -20,8 +20,8 @@ This is an App for generating team profile with node.js, inquirer.js and jest pa
 ## Installation
 
 - The software package needed to install are [package.json](https://docs.npmjs.com/cli/v9/configuring-npm/package-json), [Inquirer package](https://www.npmjs.com/package/inquirer) and [Jest package](https://www.npmjs.com/package/jest).
-- In the command line type `npm init -y` to install `package.json`, `npm i inquirer` to install inquirer.js and `npm i` to install jest package.
-- Open the package.json file in the VScode and replace the value of the `"test":` to `"test": "jest --verbose"` an image is provided below;
+- In the command line type _`npm init -y`_ to install _`package.json`_, _`npm i inquirer`_ to install inquirer.js and _`npm i`_ to install jest package.
+- Open the package.json file in the VScode and replace the value of the _`"test":`_ to _`"test": "jest --verbose"`_ an image is provided below;
 
 ![jest --verbose](images/installation-test.png)
 
@@ -33,7 +33,7 @@ This is an App for generating team profile with node.js, inquirer.js and jest pa
 
 ## Usage
 
-In the command line type node index.js, press ENTER to run the team profile generator questionaire.
+In the command line type _`node index.js`_ and press ENTER to run the team profile generator questionaire.
 
 ## Resource
 
@@ -47,11 +47,11 @@ In the command line type node index.js, press ENTER to run the team profile gene
 
 ## License
 
-This project is covered by **MIT**.
+This project is covered by **_MIT_**.
 
 ## Test
 
-In the command line type `node index.js` to see if the application is working without any error and `npm run test` to run the unit test.
+In the command line type _`node index.js`_ to see if the application is working without any error and _`npm run test`_ to run the unit test.
 
 #### Below is the image of the App after running the test.
 

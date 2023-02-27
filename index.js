@@ -117,7 +117,7 @@ const rolePromptMenu = async () =>
         endProgram();
       }
     });
-
+//engineer prompt
 const engineerPrompt = async () =>
   await inquirer
     .prompt([
@@ -176,7 +176,7 @@ const engineerPrompt = async () =>
           if (github) {
             return true;
           } else {
-            console.log("Please enter your GitHub username.");
+            console.log("\nPlease enter your GitHub username.");
             return false;
           }
         },
@@ -194,7 +194,7 @@ const engineerPrompt = async () =>
       );
       rolePromptMenu();
     });
-
+//intern prompt
 const internPrompt = async () =>
   await inquirer
     .prompt([
@@ -253,7 +253,7 @@ const internPrompt = async () =>
           if (schoolName) {
             return true;
           } else {
-            console.log("Please enter your school name.");
+            console.log("\nPlease enter your school name.");
             return false;
           }
         },
